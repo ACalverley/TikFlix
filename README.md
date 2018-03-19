@@ -9,9 +9,8 @@ To run this code using XAMPP local host
 2. Locate the folder "htdocs" in the XAMPP installation folder
     D:\ProgramFiles\XAMPP\htdocs
     
-3. You can either copy and paste code from the repository directly into the htdocs folder,
-    or you can create a new folder, D:\ProgramFiles\XAMPP\htdocs\332_omts, and add the
-    necessary files to that
+3. Create a new local git folder, one that is remotely linked to this repository under: D:\ProgramFiles\XAMPP\htdocs\332_omts.
+    Now, you should be able to pull, push, and add files from the local folder.
     
 4. I have a folder in "htdocs" called "332_omts" and to run the code through XAMPP,
     I have to go to my browser and type "http://localhost/332_omts/index.html" in the address
