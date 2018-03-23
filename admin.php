@@ -5,17 +5,33 @@
     <div class="row">
       <div class="col-xs-9">
         <div>
-          <h1>Administrator Home!</h1>
+          <?php
+            if(!empty($_POST["members"])){
+              
+            }
+            if(!empty($_POST["complexes"])){
+
+            }
+            if(!empty($_POST["movies"])){
+
+            }
+            if(!empty($_POST["tickets"])){
+
+            }
+            if(!empty($_POST["theatres"])){
+
+            }
+          ?>
         </div>
       </div>
       <div class="col-xs-3">
         <div>
           <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
-            <p><input type="submit" class="btn btn-info btn-lg btn-block" value="View/Remove Members"></button></p>
-            <p><input type="submit" class="btn btn-info btn-lg btn-block" value="Add/Update Theatre Complex"></button></p>
-            <p><input type="submit" class="btn btn-info btn-lg btn-block" value="Add/Update Movies"></button></p>
-            <p><input type="submit" class="btn btn-info btn-lg btn-block" value="Ticket Analytics"></button></p>
-            <p><input type="submit" class="btn btn-info btn-lg btn-block" value="Theatre Analytics"></button></p>
+            <p><input type="submit" name="members" class="btn btn-info btn-lg btn-block" value="View/Remove Members"></button></p>
+            <p><input type="submit" name="complexes" class="btn btn-info btn-lg btn-block" value="Add/Update Theatre Complex"></button></p>
+            <p><input type="submit" name="movies" class="btn btn-info btn-lg btn-block" value="Add/Update Movies"></button></p>
+            <p><input type="submit" name="tickets" class="btn btn-info btn-lg btn-block" value="Ticket Analytics"></button></p>
+            <p><input type="submit" name="theatres" class="btn btn-info btn-lg btn-block" value="Theatre Analytics"></button></p>
           </form>
         </div>
       </div>
