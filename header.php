@@ -9,23 +9,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 
-    <title>OMTS Home</title>
+    <title>OMTS</title>
   </head>
   <body>
   	<nav class="navbar navbar-default">
             <div class="container-fluid">
                 
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">OMTS</a>
+                    <a class="navbar-brand" href="index.php">OMTS</a>
                     <ul class="nav navbar-nav">
-                    	<li><a href="movies.html">Movies</a></li>
-                    	<li><a href="admin.html">Administrator</a></li>
-                    	<li><a href="user.html">User</a></li>
+                    	<li><a href="movieHome.php">Movies</a></li>
+                    	<li><a href="admin.php">Administrator</a></li>
+                    	<li><a href="user.php">User</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-
-        <h1>User Page!</h1>
-   </body>
-</html>
