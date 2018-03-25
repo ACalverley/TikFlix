@@ -7,19 +7,19 @@
         <div>
           <?php
             if(!empty($_POST["members"])){
-              
+              include("members.php");
             }
             if(!empty($_POST["complexes"])){
-
+              include("complexes.php");              
             }
             if(!empty($_POST["movies"])){
-
+              include("movies.php");
             }
             if(!empty($_POST["tickets"])){
-
+              include("tickets.php");
             }
             if(!empty($_POST["theatres"])){
-
+              include("theatres.php");
             }
           ?>
         </div>

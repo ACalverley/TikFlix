@@ -18,10 +18,12 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="index.php">OMTS</a>
                     <ul class="nav navbar-nav">
-                    	<li><a href="movieHome.php">Movies</a></li>
                     	<li><a href="admin.php">Administrator</a></li>
                     	<li><a href="user.php">User</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
+
+<!-- Need to add logout button to the far right that brings back to the log in page
+      add User Settings button, Home Button, on the left.  OMTS can be a logo -->
