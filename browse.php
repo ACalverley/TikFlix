@@ -31,7 +31,7 @@
 						    	echo "<h4>";
 						    	echo "$result[0] | $result[1]";
 					?>
-									<input type="submit" name="moreInfo" class="btn btn-sm btn-info" value="More Info / Review"></input>
+									<button name="moreInfo" class="btn btn-sm btn-info" value="<?php echo $result; ?>">More Info / Review</button>
 								</form>
 					<?php
 								echo "</h4>";
@@ -48,7 +48,7 @@
 						    	echo "<h4>";
 						    	echo "$movie[0] | $movie[3]";
 					?>
-									<input type="submit" name="moreInfo" class="btn btn-sm btn-info" value="More Info / Review"></input>
+									<button name="moreInfo" class="btn btn-sm btn-info" value="<?php echo $movie; ?>">More Info / Review</button>
 								</form>
 					<?php
 								echo "</h4>";

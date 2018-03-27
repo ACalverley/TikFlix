@@ -1,5 +1,7 @@
 <?php
+  session_start();
   include("header.php");
+  include("config.php");
 ?>
   <div class="container">
     <div class="row">
@@ -7,13 +9,14 @@
         <div> <!-- $_SESSION["accountNum"]  -->
           <?php
             if(!empty($_POST["confirmPurchase"])){
-              $_SESSION["showing"] = $_POST["confirmPurchase"];
+              $_SESSION["showing"] = unserialize(base64_decode($_POST["confirmPurchase"]));
               include("confirmPurchase.php");
             }
             if(!empty($_POST["browse"])){
               include("browse.php");
             }
             if(!empty($_POST["moreInfo"])){
+              $_SESSION["movie"] = $_POST["moreInfo"];              
               include("moreInfo.php");
             } // Need Review in here as well and more info
             if(!empty($_POST["purchase"])){
