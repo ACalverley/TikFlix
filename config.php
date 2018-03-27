@@ -8,7 +8,7 @@
    		try{
    			$connection = new PDO("mysql:host=".DB_SERVER.";dbname=".DB_DATABASE, DB_USERNAME, DB_PASSWORD);
    			$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   			echo "successfully made root account";
+   			//echo "successfully made root account";
    			return $connection;
    		}
    		catch(PDOException $e) {

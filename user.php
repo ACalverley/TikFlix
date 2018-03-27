@@ -23,10 +23,18 @@
               include("purchase.php"); //Show Viewings Button
             } // More info button
             if(!empty($_POST["purchases"])){
+              if(!empty($_POST["numTix"])){
+                $_SESSION["numTix"] = $_POST["numTix"];
+                rootConnection()->query("insert into reserved values ('1019194567','".$_SESSION['showing'][0]."','".$_SESSION['showing'][4]."', '".$_SESSION['showing'][5]."', '".$_SESSION['showing'][3]."', '".$_SESSION['showing'][2]."','".$_SESSION['numTix']."')");
+              }
               include("viewPurchases.php");
             } // Review here also, these are current purchases uses reserved table
             if(!empty($_POST["profile"])){
               include("profile.php");
+            }if(!empty($_POST["cancelPurchase"])){
+                $_SESSION["deleteReserved"] = unserialize(base64_decode($_POST["cancelPurchase"]));                            
+                rootConnection()->query("delete from reserved where movieTitle = '".$_SESSION['deleteReserved'][2]."' and numTix = '".$_SESSION['deleteReserved'][6]."' ");
+              include("viewPurchases.php");
             }
             if(!empty($_POST["rentals"])){
               include("rental.php");
