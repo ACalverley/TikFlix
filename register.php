@@ -59,6 +59,8 @@
           userConnection()->query("insert into admin (accountNum, name, password, email) values ('".$_SESSION["accountNum"]."','$name',".$_SESSION["password"].",'$email')");
 
           echo "Successfully create admin connection"; 
+
+          header('location: user.php');  
         } 
         catch(PDOException $e) {
           echo "Failed to create admin connection" . $e->getMessage();

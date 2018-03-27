@@ -10,6 +10,8 @@
 
       try{
         userConnection()->query("insert into customer (address, phone, creditCard, cardExpiry) values ('$address', '$phone', '$card', '$expiry')");
+        echo "succesfully inserted customer information";
+        header('location: user.php');
       }
       catch(PDOException $e) {
           echo "Connection failed: " . $e->getMessage();

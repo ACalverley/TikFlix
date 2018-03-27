@@ -6,23 +6,24 @@
       $email = $_POST["email"];
       $password = $_POST["password"];
       $server = $_SERVER['SERVER_NAME'];
-      $trimmedEmail = preg_replace("/[^A-Za-z0-9 ]/", '', $email);
 
+      //$trimmedEmail = preg_replace("/[^A-Za-z0-9 ]/", '', $email);
       // echo "<p>Username: $username 
       //          Password: $password </p>";
       // echo $_SERVER['SERVER_NAME'];
 
       try {
-          $userConnection = new PDO("mysql:host=".DB_SERVER.";dbname=".DB_DATABASE, $trimmedEmail, $password);
-          // set the PDO error mode to exception
-          $userConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-          echo "Connected successfully";
+          $user = rootConnection()->query("select accountNum from customer where email='$email' and password='$password'")->fetch(PDO::FETCH_ASSOC);
 
-          $_SESSION['trimmedEmail'] = $trimmedEmail;
-          $_SESSION['password'] = $password;
-
-          header('location: index.html');
-
+          if(!empty($user)){
+            $_SESSION["accountNum"] = $user["accountNum"];
+            $_SESSION["password"] = $password;
+            echo "Found user!";
+            header('location: user.php');
+          }
+          else {
+            echo "Could not find user!";
+          }
       } catch(PDOException $e) {
           echo "Connection failed: " . $e->getMessage();
       }
