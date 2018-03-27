@@ -4,17 +4,20 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-9">
-        <div>
+        <div> <!-- $_SESSION["accountNum"]  -->
           <?php
+            if(!empty($_POST["confirmPurchase"])){
+              $_SESSION["showing"] = $_POST["confirmPurchase"];
+              include("confirmPurchase.php");
+            }
             if(!empty($_POST["browse"])){
               include("browse.php");
             }
             if(!empty($_POST["moreInfo"])){
               include("moreInfo.php");
             } // Need Review in here as well and more info
-
             if(!empty($_POST["purchase"])){
-              include("purchase.php");
+              include("purchase.php"); //Show Viewings Button
             } // More info button
             if(!empty($_POST["purchases"])){
               include("viewPurchases.php");
