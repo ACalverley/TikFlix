@@ -50,17 +50,18 @@
         try{
           echo "Trying to create admin connection";
 
-          rootConnection()->query("grant all privileges on ".DB_DATABASE.".* to '".$_SESSION["accountNum"]."'@".DB_SERVER);
+          $rootConnection->query("grant all privileges on ".DB_DATABASE.".* to '".$_SESSION["accountNum"]."'@".DB_SERVER);
+          $rootConnection->query("grant create user on *.* to '".$_SESSION["accountNum"]."'@".DB_SERVER);
 
           // $userConnection = new PDO("mysql:host=".DB_SERVER.";dbname=".DB_DATABASE, $_SESSION["accountNum"], $password);
           // // set the PDO error mode to exception
           // $userConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-          userConnection()->query("insert into admin (accountNum, name, password, email) values ('".$_SESSION["accountNum"]."','$name',".$_SESSION["password"].",'$email')");
+          userConnection()->query("insert into admin (accountNum, name, password, email) values ('".$_SESSION["accountNum"]."','$name','".$_SESSION["password"]."','$email')");
 
           echo "Successfully create admin connection"; 
 
-          header('location: customer/user.php');  
+          header('location: ../admin/admin.php');  
         } 
         catch(PDOException $e) {
           echo "Failed to create admin connection" . $e->getMessage();

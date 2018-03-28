@@ -16,14 +16,10 @@
             <div class="container-fluid">
                 
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.php">OMTS</a>
+                    <a class="navbar-brand" href="user.php">Home</a>
                     <ul class="nav navbar-nav">
-                    	<li><a href="admin.php">Administrator</a></li>
-                    	<li><a href="user.php">User</a></li>
+                    	<li><a href="../partials/logout.php" >Logout</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-
-<!-- Need to add logout button to the far right that brings back to the log in page
-      add User Settings button, Home Button, on the left.  OMTS can be a logo -->
