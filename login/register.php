@@ -56,11 +56,11 @@
           // // set the PDO error mode to exception
           // $userConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-          userConnection()->query("insert into admin (accountNum, name, password, email) values ('".$_SESSION["accountNum"]."','$name',".$_SESSION["password"].",'$email')");
+          userConnection()->query("insert into admin (accountNum, name, password, email) values ('".$_SESSION["accountNum"]."','$name','".$_SESSION["password"]."','$email')");
 
           echo "Successfully create admin connection"; 
 
-          header('location: customer/user.php');  
+          header('location: ../admin/admin.php');  
         } 
         catch(PDOException $e) {
           echo "Failed to create admin connection" . $e->getMessage();

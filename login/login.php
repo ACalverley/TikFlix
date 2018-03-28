@@ -32,7 +32,7 @@
             $_SESSION["accountNum"] = $user["accountNum"];
             $_SESSION["name"] = $user["name"];
             echo "Found user!";
-            header('location: ../customer/admin.php');
+            header('location: ../admin/admin.php');
           }
 
           else {
