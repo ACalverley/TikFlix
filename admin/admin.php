@@ -1,5 +1,7 @@
 <?php
-  include("header.php");
+  session_start();
+  include("../partials/header.php");
+  include("../config.php");
 ?>
   <div class="container">
     <div class="row">
@@ -39,7 +41,7 @@
   </div>
 
 <?php
-  include("footer.php");
+  include("../partials/footer.php");
 ?>
 <!-- 
 list all the members

@@ -24,13 +24,15 @@
           else if(!empty($user) && empty($admin)){
             $_SESSION["accountNum"] = $user["accountNum"];
             $_SESSION["name"] = $user["name"];
+            $_SESSION["password"] = $password;
             echo "Found user!";
             header('location: ../customer/user.php');
           }
 
           else if(empty($user) && !empty($admin)){
-            $_SESSION["accountNum"] = $user["accountNum"];
-            $_SESSION["name"] = $user["name"];
+            $_SESSION["accountNum"] = $admin["accountNum"];
+            $_SESSION["name"] = $admin["name"];
+            $_SESSION["password"] = $password;
             echo "Found user!";
             header('location: ../admin/admin.php');
           }
