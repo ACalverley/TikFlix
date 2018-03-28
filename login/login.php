@@ -14,14 +14,27 @@
 
       try {
           $user = rootConnection()->query("select accountNum, name from customer where email='$email' and password='$password'")->fetch(PDO::FETCH_ASSOC);
+          $admin = rootConnection()->query("select accountNum, name from admin where email='$email' and password='$password'")->fetch(PDO::FETCH_ASSOC);
 
-          if(!empty($user)){
+          if(empty($user) && empty($admin)){
+            echo "Could not find user!";
+            header('location: /332_omts');
+          }
+
+          else if(!empty($user) && empty($admin)){
             $_SESSION["accountNum"] = $user["accountNum"];
-            $_SESSION["password"] = $password;
             $_SESSION["name"] = $user["name"];
             echo "Found user!";
             header('location: ../customer/user.php');
           }
+
+          else if(empty($user) && !empty($admin)){
+            $_SESSION["accountNum"] = $user["accountNum"];
+            $_SESSION["name"] = $user["name"];
+            echo "Found user!";
+            header('location: ../customer/admin.php');
+          }
+
           else {
             echo "Could not find user!";
             header('location: /332_omts');
