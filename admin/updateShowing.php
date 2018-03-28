@@ -16,7 +16,6 @@
 	echo $showing[3];
 	echo "</h4>";
 	echo "<p>================================================</p>";
-	// echo "<p>++++++++++++++++++++++++++++++++++++++++++++++++</p>";
 	echo "<p>================================================</p>";
 	echo "You have to be sure to update the following information to conform to the constraints of the DB";
 ?>
@@ -24,7 +23,6 @@
 		<span><h4>Update Title: </h4></span><input type="text" name="movieTitle">			
 		<span><h4>Update Time: </h4></span><input type="text" name="startTime">
 		<span><h4>Update Seats Available: </h4></span><input type="text" name="seatsAvailable">
-		<span><h4>Update Complex Address: </h4></span><input type="text" name="complexAddress">
 		<span><h4>Update Theatre Number: </h4></span><input type="text" name="theatreNumber">
 		<p></p>	
 		<button name="alterShowing" class="btn btn btn-info" value="<?php echo base64_encode(serialize($showing)); ?>">Update Showing!</button>

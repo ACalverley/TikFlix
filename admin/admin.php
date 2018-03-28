@@ -23,6 +23,9 @@
               $connection->query("delete from customer where accountNum='".$_SESSION["member"][0]."'");
               include("members.php");
             }
+
+////////////////////// Complexes ///////////////////////////////////////////
+
             if(!empty($_POST["complexes"])){
               include("complexes.php");              
             }
@@ -72,6 +75,9 @@
               }
               include("complexes.php");
             }
+
+/////////////////// Add Movies //////////////////////////////////
+
             if(!empty($_POST["movies"])){
               include("movies.php");
             }
@@ -81,6 +87,9 @@
               }
                 include("movies.php");
             }
+
+///////////////////// Show All Tickets //////////////////////
+
             if(!empty($_POST["tickets"])){
               $_SESSION["member"] = unserialize(base64_decode($_POST["tickets"]));
               include("tickets.php");
@@ -99,9 +108,6 @@
             }
             if(!empty($_POST["alterShowing"])){
               $_SESSION["showing"] = unserialize(base64_decode($_POST["alterShowing"]));
-              if (!empty($_POST["movieTitle"])){
-                userConnection()->query("update showing set movieTitle = '".$_POST['movieTitle']."' where movieTitle = '".$_SESSION['showing'][4]."' and movieDirector = '".$_SESSION['showing'][5]."'");
-              }
               if (!empty($_POST["startTime"])){
                 userConnection()->query("update showing set startTime = '".$_POST['startTime']."' where movieTitle = '".$_SESSION['showing'][4]."' and movieDirector = '".$_SESSION['showing'][5]."'");
               }
@@ -113,6 +119,9 @@
               }
               if (!empty($_POST["theatreNumber"])){
                 userConnection()->query("update showing set theatreNum = '".$_POST['theatreNumber']."' where movieTitle = '".$_SESSION['showing'][4]."' and movieDirector = '".$_SESSION['showing'][5]."'");
+              }
+              if (!empty($_POST["movieTitle"])){
+                userConnection()->query("update showing set movieTitle = '".$_POST['movieTitle']."' where movieTitle = '".$_SESSION['showing'][4]."' and movieDirector = '".$_SESSION['showing'][5]."'");
               }
               include("showings.php");
             }
