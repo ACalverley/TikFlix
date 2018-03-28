@@ -27,17 +27,20 @@
               include("complexes.php");              
             }
             if(!empty($_POST["updateComplex"])){
-              $_SESSION['complex'] = $_POST["updateComplex"];
+              $_SESSION['complex'] = unserialize(base64_decode($_POST["updateComplex"]));
               if (!empty($_POST["name"])){
-                userConnection()->query("update theatrecomplex set name = '".$_POST['name']."' where address = '".$_SESSION['complex'][0]."'");
+                userConnection()->query("update theatrecomplex set name = '".$_POST['name']."' where address = '".$_SESSION['complex'][1]."'");
               }
               if (!empty($_POST["address"])){
-                userConnection()->query("update customer set email = '".$_POST['email']."' where accountNum = '".$_SESSION['accountNum']."'");
+                userConnection()->query("update theatrecomplex set address = '".$_POST['address']."' where address = '".$_SESSION['complex'][1]."'");
               }
               if (!empty($_POST["phoneNumber"])){
-                userConnection()->query("update customer set creditCard = '".$_POST['cardNumber']."' where accountNum = '".$_SESSION['accountNum']."'");
+                userConnection()->query("update theatrecomplex set phoneNumber = '".$_POST['phoneNumber']."' where address = '".$_SESSION['complex'][1]."'");
               }
               include("complexes.php");              
+            }
+            if(!empty($_POST["updateTheatre"])){
+              include("theatres.php");
             }
             if(!empty($_POST["movies"])){
               include("movies.php");
@@ -50,7 +53,7 @@
               include("theatres.php");
             }
             if(!empty($_POST["popularTicket"])){
-              include("populatTicket.php");
+              include("popularTicket.php");
             }
           ?>
         </div>

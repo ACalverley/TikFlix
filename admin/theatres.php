@@ -1,1 +1,1 @@
-<h1>theatres</h1>
+<h1>Theatres</h1>

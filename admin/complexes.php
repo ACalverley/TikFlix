@@ -23,8 +23,8 @@
 		?>
 		<span>   -   </span><input type="text" name="phoneNumber"><p></p>
 		<button name="updateComplex" class="btn btn btn-info" value="<?php echo base64_encode(serialize($complex)); ?>">Update Complex</button>
+		<button name="updateTheatre" class="btn btn btn-info" value="<?php echo base64_encode(serialize($complex)); ?>">Update Theaters</button>
 		</form>
-		<button name="updateTheater" class="btn btn btn-info" value="<?php echo base64_encode(serialize($complex)); ?>">Update Theaters</button>
 	<br>
 <?php
 	}
