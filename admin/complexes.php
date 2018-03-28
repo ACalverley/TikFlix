@@ -1,4 +1,30 @@
 <?php
-	$complexes = userConnection()->query("select accountNum, name, address, email, phone from customer");
+	$complexes = userConnection()->query("select name, address, phoneNumber from theatrecomplex");
 ?>
 <h1>Complexes</h1>
+<?php
+	foreach($complexes as $complex){
+?>
+	<br>
+    	<form action="admin.php" class="form-inline" method="post">
+		<?php
+			echo "Name: ";
+			echo $complex[0];
+		?>
+		<input type="text" name="name"><p></p>
+		<?php
+			echo "Address: ";
+			echo $complex[1];
+		?>
+		<input type="text" name="address"><p></p>
+		<?php
+			echo "Phone Number: ";
+			echo $complex[2];
+		?>
+		<input type="text" name="phoneNumber"><p></p>
+		<button name="updateComplex" class="btn btn btn-info" value="<?php echo base64_encode(serialize($complex)); ?>">Update Complex</button>
+		</form>
+	<br>
+<?php
+	}
+?>

@@ -17,10 +17,10 @@
               include("members.php");
             }
             if(!empty($_POST["deleteMember"])){
-              $_SESSION["deleteMember"] = unserialize(base64_decode($_POST["deleteMember"]));
+              $_SESSION["member"] = unserialize(base64_decode($_POST["deleteMember"]));
               $connection = userConnection();
-              $connection->query("drop user '".$_SESSION["deleteMember"][0]."'@".DB_SERVER);
-              $connection->query("delete from customer where accountNum='".$_SESSION["deleteMember"][0]."'");
+              $connection->query("drop user '".$_SESSION["member"][0]."'@".DB_SERVER);
+              $connection->query("delete from customer where accountNum='".$_SESSION["member"][0]."'");
               include("members.php");
             }
             if(!empty($_POST["complexes"])){
@@ -30,6 +30,7 @@
               include("movies.php");
             }
             if(!empty($_POST["tickets"])){
+              $_SESSION["member"] = unserialize(base64_decode($_POST["tickets"]));
               include("tickets.php");
             }
             if(!empty($_POST["theatres"])){
