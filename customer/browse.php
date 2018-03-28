@@ -19,18 +19,18 @@
 					<?php
 						if(!empty($_POST["search"])){
 			              $title = $_POST["search"];
-			              $results = userConnection()->query("select title, rating from movie where title = '$title'");
+			              $movies = userConnection()->query("select * from movie where title = '$title'");
 			              echo"<p></p>";
-			              if(!empty($results)){
+			              if(!empty($movies)){
 			              	echo "<h2>Search results for $title:</h2>";
-			              	foreach($results as $result){
+			              	foreach($movies as $movie){
 			        ?>
 			              		<form action="user.php" class="form-inline" method="post">
 			        <?php
 						    	echo "<h4>";
-						    	echo "$result[0] | $result[1]";
+						    	echo "$movie[0] | $movie[3]";
 					?>
-									<button name="moreInfo" class="btn btn-sm btn-info" value="<?php echo $result; ?>">More Info / Review</button>
+									<button name="moreInfo" class="btn btn-sm btn-info" value="<?php echo base64_encode(serialize($movie)); ?>">More Info / Review</button>
 								</form>
 					<?php
 								echo "</h4>";
@@ -47,7 +47,7 @@
 						    	echo "<h4>";
 						    	echo "$movie[0] | $movie[3]";
 					?>
-									<button name="moreInfo" class="btn btn-sm btn-info" value="<?php echo $movie; ?>">More Info / Review</button>
+									<button name="moreInfo" class="btn btn-sm btn-info" value="<?php echo base64_encode(serialize($movie)); ?>">More Info / Review</button>
 								</form>
 					<?php
 								echo "</h4>";

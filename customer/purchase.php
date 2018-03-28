@@ -1,6 +1,5 @@
 <?php
-	$userConnection = new PDO('mysql:host=localhost;dbname=omts_db', "root", "");
-	$showings = $userConnection->query("select * from showing");
+	$showings = userConnection()->query("select * from showing");
 ?>
 <?php
 	echo "<h2>All Movies:</h2>";

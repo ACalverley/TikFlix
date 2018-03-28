@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include("../partials/header.php");
+  include("../partials/header.php");  // customer_header
   include("../config.php");
 ?>
   <div class="container">
@@ -16,7 +16,7 @@
               include("browse.php");
             }
             if(!empty($_POST["moreInfo"])){
-              $_SESSION["movie"] = $_POST["moreInfo"];              
+              $_SESSION["movie"] = unserialize(base64_decode($_POST["moreInfo"]));              
               include("moreInfo.php");
             } // Need Review in here as well and more info
             if(!empty($_POST["purchase"])){
@@ -31,14 +31,35 @@
             } // Review here also, these are current purchases uses reserved table
             if(!empty($_POST["profile"])){
               include("profile.php");
-            }if(!empty($_POST["cancelPurchase"])){
+            }
+            if(!empty($_POST["cancelPurchase"])){
                 $_SESSION["deleteReserved"] = unserialize(base64_decode($_POST["cancelPurchase"]));                            
                 userConnection()->query("delete from reserved where movieTitle = '".$_SESSION['deleteReserved'][2]."' and numTix = '".$_SESSION['deleteReserved'][6]."' and accountNum = '".$_SESSION['accountNum']."'");
               include("viewPurchases.php");
             }
+            if(!empty($_POST["alterProfile"])){
+              if (!empty($_POST["address"])){
+                userConnection()->query("update customer set address = '".$_POST['address']."' where accountNum = '".$_SESSION['accountNum']."'");
+              }
+              if (!empty($_POST["email"])){
+                userConnection()->query("update customer set email = '".$_POST['email']."' where accountNum = '".$_SESSION['accountNum']."'");
+              }
+              if (!empty($_POST["cardNumber"])){
+                userConnection()->query("update customer set creditCard = '".$_POST['cardNumber']."' where accountNum = '".$_SESSION['accountNum']."'");
+              }
+              if (!empty($_POST["cardExpiry"])){
+                userConnection()->query("update customer set cardExpiry = '".$_POST['cardExpiry']."' where accountNum = '".$_SESSION['accountNum']."'");
+              }
+              include("profile.php");
+            }
             if(!empty($_POST["rentals"])){
               include("rental.php");
             } // Need Review feature in here, past purchases
+            if(!empty($_POST["submitReview"])){
+              $review = $_POST['review'];
+              userConnection()->query("insert into review values ('".$_SESSION['reviewId']."','".$_SESSION['accountNum']."','".$_SESSION['movie'][0]."','$review')");
+              include("moreInfo.php");
+            }
           ?>
         </div>
       </div>
