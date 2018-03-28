@@ -26,6 +26,19 @@
             if(!empty($_POST["complexes"])){
               include("complexes.php");              
             }
+            if(!empty($_POST["updateComplex"])){
+              $_SESSION['complex'] = $_POST["updateComplex"];
+              if (!empty($_POST["name"])){
+                userConnection()->query("update theatrecomplex set name = '".$_POST['name']."' where address = '".$_SESSION['complex'][0]."'");
+              }
+              if (!empty($_POST["address"])){
+                userConnection()->query("update customer set email = '".$_POST['email']."' where accountNum = '".$_SESSION['accountNum']."'");
+              }
+              if (!empty($_POST["phoneNumber"])){
+                userConnection()->query("update customer set creditCard = '".$_POST['cardNumber']."' where accountNum = '".$_SESSION['accountNum']."'");
+              }
+              include("complexes.php");              
+            }
             if(!empty($_POST["movies"])){
               include("movies.php");
             }
@@ -36,6 +49,9 @@
             if(!empty($_POST["theatres"])){
               include("theatres.php");
             }
+            if(!empty($_POST["popularTicket"])){
+              include("populatTicket.php");
+            }
           ?>
         </div>
       </div>
@@ -45,7 +61,7 @@
             <p><input type="submit" name="members" class="btn btn-info btn-lg btn-block" value="View/Remove Members"></button></p>
             <p><input type="submit" name="complexes" class="btn btn-info btn-lg btn-block" value="Add/Update Theatre Complex"></button></p>
             <p><input type="submit" name="movies" class="btn btn-info btn-lg btn-block" value="Add/Update Movies"></button></p>
-            <p><input type="submit" name="tickets" class="btn btn-info btn-lg btn-block" value="Ticket Analytics"></button></p>
+            <p><input type="submit" name="popularTicket" class="btn btn-info btn-lg btn-block" value="Ticket Analytics"></button></p>
             <p><input type="submit" name="theatres" class="btn btn-info btn-lg btn-block" value="Theatre Analytics"></button></p>
           </form>
         </div>

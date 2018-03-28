@@ -11,19 +11,20 @@
 			echo "Name: ";
 			echo $complex[0];
 		?>
-		<input type="text" name="name"><p></p>
+		<span>   -   </span><input type="text" name="name"><p></p>
 		<?php
 			echo "Address: ";
 			echo $complex[1];
 		?>
-		<input type="text" name="address"><p></p>
+		<span>   -   </span><input type="text" name="address"><p></p>
 		<?php
 			echo "Phone Number: ";
 			echo $complex[2];
 		?>
-		<input type="text" name="phoneNumber"><p></p>
+		<span>   -   </span><input type="text" name="phoneNumber"><p></p>
 		<button name="updateComplex" class="btn btn btn-info" value="<?php echo base64_encode(serialize($complex)); ?>">Update Complex</button>
 		</form>
+		<button name="updateTheater" class="btn btn btn-info" value="<?php echo base64_encode(serialize($complex)); ?>">Update Theaters</button>
 	<br>
 <?php
 	}

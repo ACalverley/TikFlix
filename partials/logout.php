@@ -1,4 +1,4 @@
 <?php
 	session_destroy();
-	header("Location: ../login/login.php");
+	header("Location: ../../332_omts");
 ?>
