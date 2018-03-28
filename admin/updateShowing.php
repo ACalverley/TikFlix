@@ -5,7 +5,7 @@
 	echo "</h1>";
 	echo "<h2>Showing at: ";
 	echo $showing[0];
-	echo "</h2>";
+	echo " PM</h2>";
 	echo "<h3>Seats Available: ";
 	echo $showing[1];
 	echo "</h3>";

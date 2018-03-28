@@ -5,6 +5,7 @@
 ?>
   <div class="container">
     <div class="row">
+      <h1>Hi <?php echo $_SESSION['name']?>!</h1>
       <div class="col-xs-9">
         <div> <!-- $_SESSION["accountNum"]  -->
           <?php
