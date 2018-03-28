@@ -9,8 +9,8 @@
       $expiry = $_POST["expiry"];
 
       try{
-        userConnection()->query("insert into customer (address, phone, creditCard, cardExpiry) values ('$address', '$phone', '$card', '$expiry')");
-        echo "succesfully inserted customer information";
+        userConnection()->query("update customer set address='$address', phone='$phone', creditCard='$card', cardExpiry='$expiry' where accountNum='".$_SESSION['accountNum']."'");
+        echo "succesfully updated customer information";
         header('location: ../customer/user.php');
       }
       catch(PDOException $e) {

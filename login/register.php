@@ -125,7 +125,7 @@
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Register">
             </div>
-            <p>Already have an account? <a href="login.php">Login now</a>.</p>
+            <p>Already have an account? <a href="/332_omts">Login now</a>.</p>
             <p>Register as an Admin <input type="checkbox" name="adminCheck"></p> 
         </form>
     </div>    

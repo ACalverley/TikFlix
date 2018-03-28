@@ -13,16 +13,18 @@
       // echo $_SERVER['SERVER_NAME'];
 
       try {
-          $user = rootConnection()->query("select accountNum from customer where email='$email' and password='$password'")->fetch(PDO::FETCH_ASSOC);
+          $user = rootConnection()->query("select accountNum, name from customer where email='$email' and password='$password'")->fetch(PDO::FETCH_ASSOC);
 
           if(!empty($user)){
             $_SESSION["accountNum"] = $user["accountNum"];
             $_SESSION["password"] = $password;
+            $_SESSION["name"] = $user["name"];
             echo "Found user!";
             header('location: ../customer/user.php');
           }
           else {
             echo "Could not find user!";
+            header('location: /332_omts');
           }
       } catch(PDOException $e) {
           echo "Connection failed: " . $e->getMessage();
@@ -60,7 +62,7 @@
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+            <p>Don't have an account? <a href="login/register.php">Sign up now</a>.</p>
         </form>
     </div>    
 </body>
