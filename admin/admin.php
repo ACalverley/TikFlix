@@ -39,8 +39,38 @@
               }
               include("complexes.php");              
             }
-            if(!empty($_POST["updateTheatre"])){
+            if(!empty($_POST["editTheatres"])){
+              $_SESSION['complex'] = unserialize(base64_decode($_POST["editTheatres"]));
               include("theatres.php");
+            }
+            if(!empty($_POST["updateTheatre"])){
+              $_SESSION['theatre'] = unserialize(base64_decode($_POST["updateTheatre"]));
+              if (!empty($_POST["theatreNum"])){
+                userConnection()->query("update theatre set theatreNum = '".$_POST['theatreNum']."' where complexAddress = '".$_SESSION['complex'][1]."' and theatreNum = '".$_SESSION['theatre'][0]."'");
+              }
+              if (!empty($_POST['maxSeats'])){
+                userConnection()->query("update theatre set maxSeats = '".$_POST['maxSeats']."' where complexAddress = '".$_SESSION['complex'][1]."' and theatreNum = '".$_SESSION['theatre'][0]."'");
+              }
+              if (!empty($_POST['screenSize'])){
+                userConnection()->query("update theatre set screenSize = '".$_POST['screenSize']."' where complexAddress = '".$_SESSION['complex'][1]."' and theatreNum = '".$_SESSION['theatre'][0]."'");
+              }
+              include("complexes.php");
+            }
+            if(!empty($_POST["addComplex"])){
+              userConnection()->query("insert into theatrecomplex values ('".$_POST['address']."', '".$_POST['name']."', '".$_POST['phoneNumber']."', '".$_POST['numTheatres']."')");
+              //userConnection()->query("insert into theatre (complexAddress) values ('".$_POST['address']."')");
+              $_SESSION["numTheatres"] = $_POST['numTheatres'];
+              $_SESSION["complexAddress"] = $_POST['address'];
+              include("createTheatres.php");
+            }
+            if(!empty($_POST["addTheatre"])){
+              $seats = $_POST["maxSeats"];
+              $screen= $_POST["screenSize"];
+              for($x=1; $x<=$_SESSION["numTheatres"]; $x++){
+                $index = $x - 1;
+                userConnection()->query("insert into theatre values ('$x','".$_SESSION["complexAddress"]."', '$seats[$index]', '$screen[$index]')");
+              }
+              include("complexes.php");
             }
             if(!empty($_POST["movies"])){
               include("movies.php");
