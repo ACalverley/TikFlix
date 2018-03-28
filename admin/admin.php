@@ -42,6 +42,12 @@
             if(!empty($_POST["movies"])){
               include("movies.php");
             }
+            if(!empty($_POST["createMovie"])){
+               if(!empty($_POST["movieTitle"]) && !empty($_POST["director"]) && !empty($_POST["runningTime"]) && !empty($_POST["rating"]) && !empty($_POST["plotSynopsis"]) && !empty($_POST["mainActors"]) && !empty($_POST["prodCompany"]) && !empty($_POST["dateStart"]) && !empty($_POST["endDate"]) && !empty($_POST["supplier"])){
+                userConnection()->query("insert into movie values ('".$_POST['movieTitle']."', '".$_POST['director']."', '".$_POST['runningTime']."', '".$_POST['rating']."', '".$_POST['plotSynopsis']."', '".$_POST['mainActors']."', '".$_POST['prodCompany']."', '".$_POST['dateStart']."', '".$_POST['endDate']."', '".$_POST['supplier']."')");
+              }
+                include("movies.php");
+            }
             if(!empty($_POST["tickets"])){
               $_SESSION["member"] = unserialize(base64_decode($_POST["tickets"]));
               include("tickets.php");
@@ -60,7 +66,7 @@
           <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
             <p><input type="submit" name="members" class="btn btn-info btn-lg btn-block" value="View/Remove Members"></button></p>
             <p><input type="submit" name="complexes" class="btn btn-info btn-lg btn-block" value="Add/Update Theatre Complex"></button></p>
-            <p><input type="submit" name="movies" class="btn btn-info btn-lg btn-block" value="Add/Update Movies"></button></p>
+            <p><input type="submit" name="movies" class="btn btn-info btn-lg btn-block" value="Add Movies"></button></p>
             <p><input type="submit" name="popularTicket" class="btn btn-info btn-lg btn-block" value="Ticket Analytics"></button></p>
             <p><input type="submit" name="theatres" class="btn btn-info btn-lg btn-block" value="Theatre Analytics"></button></p>
           </form>
