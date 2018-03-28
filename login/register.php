@@ -50,7 +50,8 @@
         try{
           echo "Trying to create admin connection";
 
-          rootConnection()->query("grant all privileges on ".DB_DATABASE.".* to '".$_SESSION["accountNum"]."'@".DB_SERVER);
+          $rootConnection->query("grant all privileges on ".DB_DATABASE.".* to '".$_SESSION["accountNum"]."'@".DB_SERVER);
+          $rootConnection->query("grant create user on *.* to '".$_SESSION["accountNum"]."'@".DB_SERVER);
 
           // $userConnection = new PDO("mysql:host=".DB_SERVER.";dbname=".DB_DATABASE, $_SESSION["accountNum"], $password);
           // // set the PDO error mode to exception
