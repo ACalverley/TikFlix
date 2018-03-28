@@ -1,14 +1,26 @@
 <?php
   session_start();
-  include("../partials/header.php");
+  include("../partials/admin_header.php");
   include("../config.php");
 ?>
   <div class="container">
+  <?php
+  echo "<h3>Hi "; 
+  echo $_SESSION["name"];
+  echo "!</h3>"; // Put account Name here
+  ?>
     <div class="row">
       <div class="col-xs-9">
         <div>
           <?php
             if(!empty($_POST["members"])){
+              include("members.php");
+            }
+            if(!empty($_POST["deleteMember"])){
+              $_SESSION["deleteMember"] = unserialize(base64_decode($_POST["deleteMember"]));
+              $connection = userConnection();
+              $connection->query("drop user '".$_SESSION["deleteMember"][0]."'@".DB_SERVER);
+              $connection->query("delete from customer where accountNum='".$_SESSION["deleteMember"][0]."'");
               include("members.php");
             }
             if(!empty($_POST["complexes"])){
