@@ -1,6 +1,6 @@
 <?php
 	$user = userConnection()->query("select * from customer where accountNum = '".$_SESSION['accountNum']."'")->fetch(PDO::FETCH_ASSOC);
-
+	echo "<h1>User Profile</h1>";
 	echo "<h4>Hi ";
 	echo $_SESSION["name"];
 	echo "!";
@@ -27,5 +27,3 @@
 			<p></p>	
 			<button name="alterProfile" class="btn btn btn-info" value="<?php echo base64_encode(serialize($user)); ?>">Update Profile!</button>
 		</form>
-<?php
-

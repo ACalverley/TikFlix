@@ -5,19 +5,26 @@
 	echo "<h3>Hi </h3>"; // Put account Name here
 	echo "<h4>Here are your reserved tickets</h4>";
 	foreach($reservations as $reserved){
+		$movie = userConnection()->query("select * from movie where title='$reserved[2]'")->fetch(PDO::FETCH_ASSOC);
+		$today = date("Y-m-d H:i:s");
+		$date = $movie['endDate'];
+		//query in movie for end data
+		//if end date has passed display, else do nothing
+		if ($date > $today) {
 ?>
 
-    	<form action="user.php" class="form-inline" method="post">
+    		<form action="user.php" class="form-inline" method="post">
 <?php
-			echo "<h4>";
-			echo "$reserved[6] tickets for $reserved[2] | Start Time: $reserved[1] | Address: $reserved[5]";
+				echo "<h4>";
+				echo "$reserved[6] tickets for $reserved[2] | Start Time: $reserved[1] | Address: $reserved[5]";
+			
 ?>
-			<br>	
-			<button name="cancelPurchase" class="btn btn-sm btn-info" value="<?php echo base64_encode(serialize($reserved)); ?>">Cancel Purchase</button>
-		</form>
+				<br>	
+				<button name="cancelPurchase" class="btn btn-sm btn-info" value="<?php echo base64_encode(serialize($reserved)); ?>">Cancel Purchase</button>
+			</form>
 <?php
-		echo "</h4>";
-		echo "<br>";
-		//echo $_SESSION['numTix'];
+				echo "</h4>";
+				echo "<br>";
+		}	//echo $_SESSION['numTix'];
 	}
 ?>

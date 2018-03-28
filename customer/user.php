@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include("../partials/header.php");  // customer_header
+  include("../partials/customer_header.php");  // customer_header
   include("../config.php");
 ?>
   <div class="container">
