@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include("config.php");
+  include("../config.php");
 
   function generateUniqueAccount(){
     $accountNumber = rand(0,9999);
@@ -60,7 +60,7 @@
 
           echo "Successfully create admin connection"; 
 
-          header('location: user.php');  
+          header('location: customer/user.php');  
         } 
         catch(PDOException $e) {
           echo "Failed to create admin connection" . $e->getMessage();

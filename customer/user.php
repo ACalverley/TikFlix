@@ -1,7 +1,7 @@
 <?php
   session_start();
-  include("header.php");
-  include("config.php");
+  include("../partials/header.php");
+  include("../config.php");
 ?>
   <div class="container">
     <div class="row">
@@ -56,5 +56,5 @@
     </div>
   </div>
 <?php
-  include("footer.php");
+  include("../partials/footer.php");
 ?>

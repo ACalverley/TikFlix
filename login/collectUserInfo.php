@@ -1,6 +1,6 @@
 <?php
    session_start();
-   include("config.php");
+   include("../config.php");
 
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       $address = $_POST["address"];
@@ -11,7 +11,7 @@
       try{
         userConnection()->query("insert into customer (address, phone, creditCard, cardExpiry) values ('$address', '$phone', '$card', '$expiry')");
         echo "succesfully inserted customer information";
-        header('location: user.php');
+        header('location: ../customer/user.php');
       }
       catch(PDOException $e) {
           echo "Connection failed: " . $e->getMessage();
