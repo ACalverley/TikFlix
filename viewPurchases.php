@@ -1,6 +1,5 @@
 <?php
-	$userConnection = new PDO('mysql:host=localhost;dbname=omts_db', "root", "");
-	$reservations = $userConnection->query("select * from reserved");
+	$reservations = userConnection()->query("select * from reserved where accountNum='".$_SESSION["accountNum"]."'");
 ?>
 <?php
 	echo "<h3>Hi </h3>"; // Put account Name here

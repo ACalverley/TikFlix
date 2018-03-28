@@ -1,6 +1,5 @@
 <?php
-	$userConnection = new PDO('mysql:host=localhost;dbname=omts_db', "root", "");
-	$movies = $userConnection->query("select * from movie");
+	$movies = userConnection()->query("select * from movie");
 ?>
 
 	<div class="container">
@@ -20,7 +19,7 @@
 					<?php
 						if(!empty($_POST["search"])){
 			              $title = $_POST["search"];
-			              $results = $userConnection->query("select title, rating from movie where title = '$title'");
+			              $results = userConnection()->query("select title, rating from movie where title = '$title'");
 			              echo"<p></p>";
 			              if(!empty($results)){
 			              	echo "<h2>Search results for $title:</h2>";
