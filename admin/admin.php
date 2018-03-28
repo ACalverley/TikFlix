@@ -61,6 +61,35 @@
             if(!empty($_POST["popularTicket"])){
               include("popularTicket.php");
             }
+            if(!empty($_POST["popularTheatre"])){
+              include("popularTheatre.php");
+            }
+            if(!empty($_POST["showings"])){
+              include("showings.php");
+            }
+            if(!empty($_POST["alterShowing"])){
+              $_SESSION["showing"] = unserialize(base64_decode($_POST["alterShowing"]));
+              if (!empty($_POST["movieTitle"])){
+                userConnection()->query("update showing set movieTitle = '".$_POST['movieTitle']."' where movieTitle = '".$_SESSION['showing'][4]."' and movieDirector = '".$_SESSION['showing'][5]."'");
+              }
+              if (!empty($_POST["startTime"])){
+                userConnection()->query("update showing set startTime = '".$_POST['startTime']."' where movieTitle = '".$_SESSION['showing'][4]."' and movieDirector = '".$_SESSION['showing'][5]."'");
+              }
+              if (!empty($_POST["seatsAvailable"])){
+                userConnection()->query("update showing set seatsAvailable = '".$_POST['seatsAvailable']."' where movieTitle = '".$_SESSION['showing'][4]."' and movieDirector = '".$_SESSION['showing'][5]."'");
+              }
+              if (!empty($_POST["complexAddress"])){
+                userConnection()->query("update showing set complexAddress = '".$_POST['complexAddress']."' where movieTitle = '".$_SESSION['showing'][4]."' and movieDirector = '".$_SESSION['showing'][5]."'");
+              }
+              if (!empty($_POST["theatreNumber"])){
+                userConnection()->query("update showing set theatreNum = '".$_POST['theatreNumber']."' where movieTitle = '".$_SESSION['showing'][4]."' and movieDirector = '".$_SESSION['showing'][5]."'");
+              }
+              include("showings.php");
+            }
+            if(!empty($_POST["updateShowing"])){
+              $_SESSION["showing"] = unserialize(base64_decode($_POST["updateShowing"]));
+              include("updateShowing.php");
+            }
           ?>
         </div>
       </div>
@@ -71,7 +100,8 @@
             <p><input type="submit" name="complexes" class="btn btn-info btn-lg btn-block" value="Add/Update Theatre Complex"></button></p>
             <p><input type="submit" name="movies" class="btn btn-info btn-lg btn-block" value="Add Movies"></button></p>
             <p><input type="submit" name="popularTicket" class="btn btn-info btn-lg btn-block" value="Ticket Analytics"></button></p>
-            <p><input type="submit" name="theatres" class="btn btn-info btn-lg btn-block" value="Theatre Analytics"></button></p>
+            <p><input type="submit" name="popularTheatre" class="btn btn-info btn-lg btn-block" value="Theatre Analytics"></button></p>
+            <p><input type="submit" name="showings" class="btn btn-info btn-lg btn-block" value="Update Showings"></button></p>
           </form>
         </div>
       </div>
