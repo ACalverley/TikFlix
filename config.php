@@ -17,16 +17,15 @@
    }
 
    function userConnection(){
-   		echo "inside config";
    		$accountNum = $_SESSION["accountNum"];
    		$password = $_SESSION["password"];
-   		echo $password;
-   		echo $accountNum;
+   		// echo $password;
+   		// echo $accountNum;
 
    		try{
    			$connection = new PDO("mysql:host=".DB_SERVER.";dbname=".DB_DATABASE, $accountNum, $password);
    			$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   			echo "successfully made user account";
+   			// echo "successfully made user account";
    			return $connection;
    		}
    		catch(PDOException $e) {
