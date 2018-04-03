@@ -7,10 +7,10 @@
 	echo "<h2>Directed by: ";
 	echo $movie[1];
 	echo "</h2>";
-	echo "<h3>Plot Synopsis:";
+	echo "<h3>Plot Synopsis: ";
 	echo $movie[4];
 	echo "</h3>";
-	echo "<h3>Cast:";
+	echo "<h3>Cast: ";
 	echo $movie[5];
 	echo "</h3>";
 	echo "<h4>Rating: ";
@@ -33,7 +33,7 @@
 	echo "<br>";
 
 	foreach($reviews as $review){
-		echo "<h4>Review id:";
+		echo "<h4>Review id: ";
 		echo $review[0];
 		echo " | ";
 		echo $review[3];
