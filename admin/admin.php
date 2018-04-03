@@ -13,9 +13,13 @@
       <div class="col-xs-9">
         <div>
           <?php
+
+////////////////////// View & Delete Members ///////////////////////////////////////////
+
             if(!empty($_POST["members"])){
               include("members.php");
             }
+
             if(!empty($_POST["deleteMember"])){
               $_SESSION["member"] = unserialize(base64_decode($_POST["deleteMember"]));
               $connection = userConnection();
@@ -24,11 +28,12 @@
               include("members.php");
             }
 
-////////////////////// Complexes ///////////////////////////////////////////
+////////////////////// Add & Update Complexes ///////////////////////////////////////////
 
             if(!empty($_POST["complexes"])){
               include("complexes.php");              
             }
+
             if(!empty($_POST["updateComplex"])){
               $_SESSION['complex'] = unserialize(base64_decode($_POST["updateComplex"]));
               if (!empty($_POST["name"])){
@@ -42,10 +47,32 @@
               }
               include("complexes.php");              
             }
+
+            if(!empty($_POST["addComplex"])){
+              userConnection()->query("insert into theatrecomplex values ('".$_POST['address']."', '".$_POST['name']."', '".$_POST['phoneNumber']."', '".$_POST['numTheatres']."')");
+              //userConnection()->query("insert into theatre (complexAddress) values ('".$_POST['address']."')");
+              $_SESSION["numTheatres"] = $_POST['numTheatres'];
+              $_SESSION["complexAddress"] = $_POST['address'];
+              include("createTheatres.php");
+            }
+
+/////////////////// Add, Edit & Update Theatres //////////////////////////////////
+
+            if(!empty($_POST["addTheatre"])){
+              $seats = $_POST["maxSeats"];
+              $screen= $_POST["screenSize"];
+              for($x=1; $x<=$_SESSION["numTheatres"]; $x++){
+                $index = $x - 1;
+                userConnection()->query("insert into theatre values ('$x','".$_SESSION["complexAddress"]."', '$seats[$index]', '$screen[$index]')");
+              }
+              include("complexes.php");
+            }
+
             if(!empty($_POST["editTheatres"])){
               $_SESSION['complex'] = unserialize(base64_decode($_POST["editTheatres"]));
               include("theatres.php");
             }
+
             if(!empty($_POST["updateTheatre"])){
               $_SESSION['theatre'] = unserialize(base64_decode($_POST["updateTheatre"]));
               if (!empty($_POST["theatreNum"])){
@@ -56,22 +83,6 @@
               }
               if (!empty($_POST['screenSize'])){
                 userConnection()->query("update theatre set screenSize = '".$_POST['screenSize']."' where complexAddress = '".$_SESSION['complex'][1]."' and theatreNum = '".$_SESSION['theatre'][0]."'");
-              }
-              include("complexes.php");
-            }
-            if(!empty($_POST["addComplex"])){
-              userConnection()->query("insert into theatrecomplex values ('".$_POST['address']."', '".$_POST['name']."', '".$_POST['phoneNumber']."', '".$_POST['numTheatres']."')");
-              //userConnection()->query("insert into theatre (complexAddress) values ('".$_POST['address']."')");
-              $_SESSION["numTheatres"] = $_POST['numTheatres'];
-              $_SESSION["complexAddress"] = $_POST['address'];
-              include("createTheatres.php");
-            }
-            if(!empty($_POST["addTheatre"])){
-              $seats = $_POST["maxSeats"];
-              $screen= $_POST["screenSize"];
-              for($x=1; $x<=$_SESSION["numTheatres"]; $x++){
-                $index = $x - 1;
-                userConnection()->query("insert into theatre values ('$x','".$_SESSION["complexAddress"]."', '$seats[$index]', '$screen[$index]')");
               }
               include("complexes.php");
             }
@@ -88,24 +99,33 @@
                 include("movies.php");
             }
 
-///////////////////// Show All Tickets //////////////////////
+///////////////////// Show All Tickets For a Member //////////////////////
 
             if(!empty($_POST["tickets"])){
               $_SESSION["member"] = unserialize(base64_decode($_POST["tickets"]));
               include("tickets.php");
             }
-            if(!empty($_POST["theatres"])){
-              include("theatres.php");
-            }
+
+///////////////////// Popular Tickets and Theatres //////////////////////
+
             if(!empty($_POST["popularTicket"])){
               include("popularTicket.php");
             }
             if(!empty($_POST["popularTheatre"])){
               include("popularTheatre.php");
             }
+
+///////////////////// Showings //////////////////////
+
             if(!empty($_POST["showings"])){
               include("showings.php");
             }
+
+            if(!empty($_POST["updateShowing"])){
+              $_SESSION["showing"] = unserialize(base64_decode($_POST["updateShowing"]));
+              include("updateShowing.php");
+            }
+
             if(!empty($_POST["alterShowing"])){
               $_SESSION["showing"] = unserialize(base64_decode($_POST["alterShowing"]));
               if (!empty($_POST["startTime"])){
@@ -125,10 +145,9 @@
               }
               include("showings.php");
             }
-            if(!empty($_POST["updateShowing"])){
-              $_SESSION["showing"] = unserialize(base64_decode($_POST["updateShowing"]));
-              include("updateShowing.php");
-            }
+
+///////////////////// Navigation on Home Page //////////////////////
+
           ?>
         </div>
       </div>

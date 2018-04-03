@@ -9,20 +9,18 @@
       <div class="col-xs-9">
         <div> <!-- $_SESSION["accountNum"]  -->
           <?php
+
+///////////////////// Confirm, View & Cancel Purchases //////////////////////          
+
             if(!empty($_POST["confirmPurchase"])){
               $_SESSION["showing"] = unserialize(base64_decode($_POST["confirmPurchase"]));
               include("confirmPurchase.php");
             }
-            if(!empty($_POST["browse"])){
-              include("browse.php");
-            }
-            if(!empty($_POST["moreInfo"])){
-              $_SESSION["movie"] = unserialize(base64_decode($_POST["moreInfo"]));              
-              include("moreInfo.php");
-            } // Need Review in here as well and more info
+
             if(!empty($_POST["purchase"])){
               include("purchase.php"); //Show Viewings Button
             } // More info button
+
             if(!empty($_POST["purchases"])){
               if(!empty($_POST["numTix"])){
                 $_SESSION["numTix"] = $_POST["numTix"];
@@ -30,14 +28,36 @@
               }
               include("viewPurchases.php");
             } // Review here also, these are current purchases uses reserved table
+
+            if(!empty($_POST["cancelPurchase"])){
+              $_SESSION["deleteReserved"] = unserialize(base64_decode($_POST["cancelPurchase"]));                            
+              userConnection()->query("delete from reserved where movieTitle = '".$_SESSION['deleteReserved'][2]."' and numTix = '".$_SESSION['deleteReserved'][6]."' and accountNum = '".$_SESSION['accountNum']."'");
+              include("viewPurchases.php");
+            }
+
+///////////////////// Browse Movie, Showings & Reviews //////////////////////          
+
+            if(!empty($_POST["browse"])){
+              include("browse.php");
+            }
+
+            if(!empty($_POST["moreInfo"])){
+              $_SESSION["movie"] = unserialize(base64_decode($_POST["moreInfo"]));              
+              include("moreInfo.php");
+            } // Need Review in here as well and more info
+
+            if(!empty($_POST["submitReview"])){
+              $review = $_POST['review'];
+              userConnection()->query("insert into review values ('".$_SESSION['reviewId']."','".$_SESSION['accountNum']."','".$_SESSION['movie'][0]."','$review')");
+              include("moreInfo.php");
+            }
+
+///////////////////// View & Alter Profile //////////////////////          
+
             if(!empty($_POST["profile"])){
               include("profile.php");
             }
-            if(!empty($_POST["cancelPurchase"])){
-                $_SESSION["deleteReserved"] = unserialize(base64_decode($_POST["cancelPurchase"]));                            
-                userConnection()->query("delete from reserved where movieTitle = '".$_SESSION['deleteReserved'][2]."' and numTix = '".$_SESSION['deleteReserved'][6]."' and accountNum = '".$_SESSION['accountNum']."'");
-              include("viewPurchases.php");
-            }
+
             if(!empty($_POST["alterProfile"])){
               if (!empty($_POST["address"])){
                 userConnection()->query("update customer set address = '".$_POST['address']."' where accountNum = '".$_SESSION['accountNum']."'");
@@ -53,14 +73,15 @@
               }
               include("profile.php");
             }
+
+///////////////////// Browse Past Rentals //////////////////////          
+
             if(!empty($_POST["rentals"])){
               include("rental.php");
             } // Need Review feature in here, past purchases
-            if(!empty($_POST["submitReview"])){
-              $review = $_POST['review'];
-              userConnection()->query("insert into review values ('".$_SESSION['reviewId']."','".$_SESSION['accountNum']."','".$_SESSION['movie'][0]."','$review')");
-              include("moreInfo.php");
-            }
+
+///////////////////// Home Page Navigation //////////////////////          
+
           ?>
         </div>
       </div>
