@@ -7,7 +7,7 @@
     <div class="row">
       <h1>Hi <?php echo $_SESSION['name']?>!</h1>
       <div class="col-xs-9">
-        <div> <!-- $_SESSION["accountNum"]  -->
+        <div> 
           <?php
 
 ///////////////////// Confirm, View & Cancel Purchases //////////////////////          
@@ -24,9 +24,21 @@
             if(!empty($_POST["purchases"])){
               if(!empty($_POST["numTix"])){
                 $_SESSION["numTix"] = $_POST["numTix"];
-                userConnection()->query("insert into reserved values ('".$_SESSION['accountNum']."','".$_SESSION['showing'][0]."','".$_SESSION['showing'][4]."', '".$_SESSION['showing'][5]."', '".$_SESSION['showing'][3]."', '".$_SESSION['showing'][2]."','".$_SESSION['numTix']."')");
+
+                $currentTicksAvailable = userConnection()->query("select seatsAvailable from showing where startTime = '".$_SESSION['showing'][0]."' and complexAddress = '".$_SESSION['showing'][2]."' and theatreNum = '".$_SESSION['showing'][3]."' and movieTitle = '".$_SESSION['showing'][4]."' and movieDirector = '".$_SESSION['showing'][5]."'");
+
+                if($currentTicksAvailable >= $_SESSION['numTix']){
+                  userConnection()->query("update showing set seatsAvailable = seatsAvailable - '".$_SESSION['numTix']."'");
+
+                  userConnection()->query("insert into reserved values ('".$_SESSION['accountNum']."','".$_SESSION['showing'][0]."','".$_SESSION['showing'][4]."', '".$_SESSION['showing'][5]."', '".$_SESSION['showing'][3]."', '".$_SESSION['showing'][2]."','".$_SESSION['numTix']."')");
+
+                  include("viewPurchases.php");
+                }
+
+                else{
+
+                }
               }
-              include("viewPurchases.php");
             } // Review here also, these are current purchases uses reserved table
 
             if(!empty($_POST["cancelPurchase"])){

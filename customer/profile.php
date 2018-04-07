@@ -1,9 +1,6 @@
 <?php
 	$user = userConnection()->query("select * from customer where accountNum = '".$_SESSION['accountNum']."'")->fetch(PDO::FETCH_ASSOC);
 	echo "<h1>User Profile</h1>";
-	echo "<h4>Hi ";
-	echo $_SESSION["name"];
-	echo "!";
 	echo "</h4><p></p><h4>";
 	echo "Your current address is: ";
 	echo $user['address'];
