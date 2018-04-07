@@ -1,5 +1,7 @@
 <?php
 	$showings = userConnection()->query("select * from showing");
+	$movies = userConnection()->query("select * from movie");
+	$complexes = userConnection()->query("select * from theatrecomplex");
 ?>
 	<div class="container">
 			<div class="row">
@@ -19,27 +21,38 @@
 					<?php
 							echo "</h4>";
 						}
-						try {
 					?>
 						<form action="admin.php" class="form" method="post">
 			            	<h2>Create a New Showing</h2>
 				            <p></p>
-							<form action="admin.php" class="form" method="post"> 
-							<span><h4>Start Time: </h4></span><input type="text" name="movieTitle"> <span> Enter in the format H:MM</span>
-							<span><h4>Seats Available: </h4></span><input type="text" name="director">
-							<span><h4>Complex Address: </h4></span><input type="text" name="runningTime">
-							<span><h4>Theatre Number: </h4></span><input type="text" name="rating">
-							<span><h4>Movie Title: </h4></span><textarea rows="3" cols="30" name="plotSynopsis"></textarea>
-							<span><h4>Director: </h4></span><input type="text" name="mainActors">		
+							<h4>Movie Title: </h4><select class="form-control" name="movieTitle">
+													<?php
+														foreach($movies as $movie){
+															echo "<option>";
+															echo "$movie[0]";
+															echo "</option>";
+														}
+													?>
+												</select>	
+							<h4>Start Time: </h4><input type="text" name="startTime"> <span> Enter in the format H:MM</span>
+							<h4>Seats Available: </h4><input type="text" name="seatsAvailable">
+							<h4>Complex Address: </h4><select class="form-control" name="complexAddress">
+														<?php
+															foreach($complexes as $complex){
+																$theatres = userConnection()->query("select * from theatre where complexAddress = '$complex[0]'");
+																echo "<option>";
+																echo "$complex[0] | Available Theatres: | ";
+																foreach ($theatres as $theatre) {
+																	echo "$theatre[0] | ";
+																}
+																echo "</option>";
+															}
+														?>
+													</select>
+							<h4>Theatre Number: </h4><input type="text" name="theatreNum"> <span>Please choose one of the theatres in the above complex</span>
 							<p></p>	
-							<button name="createMovie" class="btn btn btn-info" value="1">Add Showing!</button>
+							<button name="addShowing" class="btn btn btn-info" value="1">Add Showing!</button>
 						</form>
-					<?php
-						} catch (PDOException $e) {
-          					echo "Connection failed: " . $e->getMessage();
-          					echo "Check the parameters of the showing and try again";
-      					}
-					?>
 				</div>
 			</div>
 	</div>

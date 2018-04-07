@@ -11,7 +11,7 @@
     	<form action="admin.php" class="form-inline" method="post">
 <?php
 			echo "<h4>";
-			echo "$ticket[0] | Directed by: $ticket[1] | At: $ticket[2] | Theater Number: $ticket[3] | Location: $ticket[4] | Number of Tickets Purchased: $ticket[5]";
+			echo "$ticket[0] | Directed by: $ticket[1] | At: $ticket[2] PM| Theater Number: $ticket[3] | Location: $ticket[4] | Number of Tickets Purchased: $ticket[5]";
 ?>
 			<br>	
 		</form>

@@ -145,7 +145,7 @@
               }
               include("showings.php");
             }
-              if(!empty($_POST["updateShowing"])){
+            if(!empty($_POST["addShowing"])){
                 if(!empty($_POST["startTime"]) && !empty($_POST["seatsAvailable"]) && !empty($_POST["complexAddress"]) && !empty($_POST["theatreNum"]) && !empty($_POST["movieTitle"]) && !empty($_POST["movieDirector"])){
                 userConnection()->query("insert into showing values ('".$_POST['startTime']."', '".$_POST['seatsAvailable']."', '".$_POST['complexAddress']."', '".$_POST['theatreNum']."', '".$_POST['movieTitle']."', '".$_POST['movieDirector']."')");
                 }
