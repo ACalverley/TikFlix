@@ -3,8 +3,13 @@
 ?>
 <?php
 	echo "<h2>All Movies:</h2>";
-    echo "<p></p>";
-	foreach($showings as $showing){
+
+	if(empty($showings)){
+		echo "<h5>There are no showings :(<h5>";
+	}
+
+	else{
+		foreach($showings as $showing){
 		$movie = userConnection()->query("select * from movie where title='$showing[4]'")->fetch(PDO::FETCH_ASSOC);
 		$today = date("Y-m-d H:i:s");
 		$date = $movie['endDate'];
@@ -23,5 +28,6 @@
 			echo "</h4>";
 			echo "<br>";
 		}
+	}
 	}
 ?>
