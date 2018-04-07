@@ -14,7 +14,6 @@
 		$today = date("Y-m-d H:i:s");
 		$date = $movie['endDate'];
 			if ($date > $today) {
-				echo "</h4>";
 				echo "<br>";
 	?>
 

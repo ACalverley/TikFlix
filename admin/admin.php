@@ -94,7 +94,7 @@
             }
             if(!empty($_POST["createMovie"])){
                if(!empty($_POST["movieTitle"]) && !empty($_POST["director"]) && !empty($_POST["runningTime"]) && !empty($_POST["rating"]) && !empty($_POST["plotSynopsis"]) && !empty($_POST["mainActors"]) && !empty($_POST["prodCompany"]) && !empty($_POST["dateStart"]) && !empty($_POST["endDate"]) && !empty($_POST["supplier"])){
-                userConnection()->query("insert into movie values ('".$_POST['movieTitle']."', '".$_POST['director']."', '".$_POST['runningTime']."', '".$_POST['rating']."', '".$_POST['plotSynopsis']."', '".$_POST['mainActors']."', '".$_POST['prodCompany']."', '".$_POST['dateStart']."', '".$_POST['endDate']."', '".$_POST['supplier']."')");
+                userConnection()->query("insert into movie values ('".$_POST['movieTitle']."', '".$_POST['director']."', '".$_POST['runningTime']."', '".$_POST['rating']."', '".$_POST['plotSynopsis']."', '".$_POST['mainActors']."', '".$_POST['prodCompany']."', '".$_POST['dateStart']."', '".$_POST['endDate']."', 'suppliers')");
               }
                 include("movies.php");
             }

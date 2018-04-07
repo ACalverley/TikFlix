@@ -31,14 +31,13 @@
                   userConnection()->query("update showing set seatsAvailable = seatsAvailable - '".$_SESSION['numTix']."'");
 
                   userConnection()->query("insert into reserved values ('".$_SESSION['accountNum']."','".$_SESSION['showing'][0]."','".$_SESSION['showing'][4]."', '".$_SESSION['showing'][5]."', '".$_SESSION['showing'][3]."', '".$_SESSION['showing'][2]."','".$_SESSION['numTix']."')");
-
-                  include("viewPurchases.php");
                 }
 
                 else{
-
+                  
                 }
               }
+              include("viewPurchases.php");
             } // Review here also, these are current purchases uses reserved table
 
             if(!empty($_POST["cancelPurchase"])){

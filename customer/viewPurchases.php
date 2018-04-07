@@ -7,7 +7,7 @@
 	if(empty($reservations)) {
 		echo "<h5>You have no movies reserved :(<h5>";
 	}
-	
+
 	else {
 		foreach($reservations as $reserved){
 			$movie = userConnection()->query("select * from movie where title='$reserved[2]'")->fetch(PDO::FETCH_ASSOC);
@@ -16,6 +16,7 @@
 			//query in movie for end data
 			//if end date has passed display, else do nothing
 			if ($date > $today) {
+				echo "<br>";
 	?>
 
 	    		<form action="user.php" class="form-inline" method="post">
